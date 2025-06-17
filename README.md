@@ -4,3 +4,5 @@
 ・重力がある
 ・ボール同士の衝突
 ・連続ヒットでボーナススコア
+
+<a href="https://deepwiki.com/StarFlowerSeika/BlockHeat"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
