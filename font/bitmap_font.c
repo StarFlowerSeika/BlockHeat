@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <GL/gl.h>
@@ -108,7 +108,7 @@ void MakeBitMapFont(void)
 		/* { */ {0x00,0x0f,0x18, 0x18,0x18,0x38, 0xf0,0x38,0x18, 0x18,0x18,0x0f},
 		/* | */ {0x18,0x18,0x18, 0x18,0x18,0x18, 0x18,0x18,0x18, 0x18,0x18,0x18},
 		/* } */ {0x00,0xf0,0x18, 0x18,0x18,0x1c, 0x0f,0x1c,0x18, 0x18,0x18,0xf0},
-  		/* ~ */ {0x00,0x00,0x00, 0x00,0x00,0x00, 0x06,0x8f,0xf1, 0x60,0x00,0x00}
+		/* ~ */ {0x00,0x00,0x00, 0x00,0x00,0x00, 0x06,0x8f,0xf1, 0x60,0x00,0x00}
 	};
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -150,14 +150,14 @@ void ModelDraw(void)
 
 void ReshapeWindow(int x, int y)
 {
-	static GLfloat v[4]={1.0,-1.0,2.0,0.0}; /* ¸÷¸»¤Î¸þ¤­ */
+	static GLfloat v[4]={1.0,-1.0,2.0,0.0}; /* ï½¸î–›ï½»ï½¤ï¾Žï½¸ï£²ï½¤ï½­ */
 	auxInitPosition(0,0,800,800);
  
 	glMatrixMode(GL_PROJECTION); glLoadIdentity();
 	gluPerspective(120,(GLfloat)x/(GLfloat)y,1.0,20.0);
 	glMatrixMode(GL_MODELVIEW); glLoadIdentity();
 	gluLookAt(9.5,-5.0,10.0, 9.5,0.0,0.0, 0.0,1.0,0.0);
-	glLightfv(GL_LIGHT0,GL_POSITION,v);      /* Ê¿¹Ô¸÷Àþ */
+	glLightfv(GL_LIGHT0,GL_POSITION,v);      /* ï¾Šï½¿ï½¹ï¾”ï½¸î–£ï£² */
 	glClearColor(0.0,0.0,0.0,0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
