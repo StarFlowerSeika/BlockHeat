@@ -1,6 +1,6 @@
-static GLint display_num;
+ï»¿static GLint display_num;
 
-GLubyte fontdata[95][12]; /* ¥Õ¥©¥ó¥È¤Î¥Ç¡¼¥¿³ÊÇ¼ÍÑÇÛÎE*/
+GLubyte fontdata[95][12]; /* ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ— */
 
 void load_bitmapdata(void)
 {
