@@ -1,4 +1,4 @@
- /* VC¤Ç¥³¥ó¥Ñ¥¤¥E¹¤EÈ¤­¤Ï windows.h ¤Î¥³¥á¥ó¥È¤ò³°¤¹ */
+ï»¿/* VCç”¨ã®ãŸã‚windows.hã‚’å…ˆã«includeã™ã‚‹å¿…è¦ãŒã‚ã‚‹ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,78 +20,80 @@
 #define _MIDDLE 1
 #define _RIGHT 2
 
-/* ÀEÀÉE*/
-/* ¥Ù¥¯¥È¥EÈ¤½¤ÎÂç¤­¤µ¤Î¹½Â¤ÂÎ */
+/* ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€ */
+/* ãƒ™ã‚¯ãƒˆãƒ«å‹ */
 typedef struct{
-	GLfloat vector[3]; /* ¥Ù¥¯¥È¥Eector[XYZ] */
-	GLfloat norm;  /* ¥Ù¥¯¥È¥EÎÂç¤­¤µ */
+	GLfloat vector[3]; /* ãƒ™ã‚¯ãƒˆãƒ«[XYZ] */
+	GLfloat norm;      /* ãƒ™ã‚¯ãƒˆãƒ«ã®å¤§ãã• */
 } Vector;
 
-/* ÊªÂÎ¤ÎÀßÄê¤Î¹½Â¤ÂÎÀEÀ */
-typedef struct{
-	GLfloat diffuse_rgba[4];     /* ÊªÂÎ¤Î³È»¶¸E*/
-	GLfloat specular_rgba[4];    /* ÊªÂÎ¤Î¶ÀÌÌÈ¿¼Í¸E*/
-	GLfloat shininess_rate;      /* ¶ÀÌÌÈ¿¼Í»Ø¿E*/
+/* ãƒãƒ†ãƒªã‚¢ãƒ«ï¼ˆæè³ªï¼‰å‹ */
+typedef struct {
+	GLfloat diffuse_rgba[4];     /* æ‹¡æ•£åå°„è‰² */
+	GLfloat specular_rgba[4];    /* é¡é¢åå°„è‰² */
+	GLfloat shininess_rate;      /* è¼ãã®åº¦åˆã„ */
 } Material;
 
-/* ¼«µ¡¤Î¹½Â¤ÂÎÀEÀ */
-typedef struct{
-	Vector position;       /* °ÌÃÖ¥Ù¥¯¥È¥E*/
-	Vector speed;          /* Â®ÅÙ¥Ù¥¯¥È¥E*/
-	Vector direction;      /* ¸ş¤­ */
-	GLfloat power;          /* ½ĞÎÏ */
-	Vector mobility;       /* µ¡Æ°À­ */
-	GLint life;            /* »Äµ¡ */
-	GLint balls;           /* »ı¤Á¶Ì */
-	GLfloat hitwidth,hitwidth0[2],hitheight,hitdepth;     /* Åö¤¿¤E½Äê¤ÎÂç¤­¤µ */
-    Material material;     /* ÊªÂÎ¤È¤·¤Æ¤ÎÀßÄE*/
-	int score;             /* ÆÀÅÀ */
-	int highscore;         /* ¥Ï¥¤¥¹¥³¥¢ */
-	GLint deadcount;
-	GLint newrecoad;
-	GLint gamemode;
+
+/* è‡ªæ©Ÿã®å‹ */
+typedef struct {
+	Vector position;       /* ä½ç½®ãƒ™ã‚¯ãƒˆãƒ« */
+	Vector speed;          /* é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ« */
+	Vector direction;      /* å‘ããƒ™ã‚¯ãƒˆãƒ« */
+	GLfloat power;         /* ãƒ‘ãƒ¯ãƒ¼ */
+	Vector mobility;       /* æ©Ÿå‹•åŠ› */
+	GLint life;            /* æ®‹æ©Ÿ */
+	GLint balls;           /* ãƒœãƒ¼ãƒ«æ•° */
+	GLfloat hitwidth, hitwidth0[2], hitheight, hitdepth; /* å½“ãŸã‚Šåˆ¤å®šã‚µã‚¤ã‚º */
+	Material material;     /* æè³ª */
+	int score;             /* ã‚¹ã‚³ã‚¢ */
+	int highscore;         /* ãƒã‚¤ã‚¹ã‚³ã‚¢ */
+	GLint deadcount;       /* æ­»äº¡å›æ•° */
+	GLint newrecoad;       /* æ–°è¨˜éŒ²ãƒ•ãƒ©ã‚° */
+	GLint gamemode;        /* ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ */
 } Ship;
 
-/* ÃÆ¤Î¹½Â¤ÂÎÀEÀ */
-typedef struct{
-	Vector position;       /* °ÌÃÖ¥Ù¥¯¥È¥E*/
-	Vector speed;          /* Â®ÅÙ¥Ù¥¯¥È¥E*/
-	Vector addspeed;       /* ²ÃÂ®ÅÙ¥Ù¥¯¥È¥E*/
-    Material material;     /* ÊªÂÎ¤È¤·¤Æ¤ÎÀßÄE*/	
-	GLint tamaflag;        /* ÃÆ¤ÎÍ­Ìµ */
-	GLint hitcount;        /* Ï¢Â³¥Ò¥Ã¥È¤Î¥«¥¦¥ó¥¿¡¼ */
-	GLint point;           /* Æş¤EÀÅÀ */
+/* ãƒœãƒ¼ãƒ«ã®å‹ */
+typedef struct {
+	Vector position;       /* ä½ç½®ãƒ™ã‚¯ãƒˆãƒ« */
+	Vector speed;          /* é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ« */
+	Vector addspeed;       /* åŠ é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ« */
+	Material material;     /* æè³ª */
+	GLint tamaflag;        /* å¼¾ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚° */
+	GLint hitcount;        /* ãƒ’ãƒƒãƒˆæ•° */
+	GLint point;           /* å¾—ç‚¹ */
 	GLint hitflag[10][10];
-	GLint time;           /* Â¸ºß»ş´Ö */
+	GLint time;            /* çµŒéæ™‚é–“ */
 } Tama;
 
-/* ¥¹¥Æ¡¼¥¸¹½Â¤ÂÎ¤ÎÀEÀ */
-typedef struct{
+
+/* ã‚¹ãƒ†ãƒ¼ã‚¸ã®å‹ */
+typedef struct {
 	GLint block[10][10];
 	GLint blocks;
-	GLfloat left,right,top,bottom;
-	GLint gravity_flag;    /* -1:ÀÍÎÏ 0:Ìµ¤· 1:°úÎÏ */
-	GLfloat blockroll[10][10];           /* ¥Ö¥úÁÃ¥¯¤Î²óÅ¾³ÑÅÙ */
-	GLfloat blockrollspeed[20];           /* ¥Ö¥úÁÃ¥¯¤Î²óÅ¾³ÑÅÙ */
-	GLint blockpoint[20];         /* ¥Ö¥úÁÃ¥¯¤ÎÆÀÅÀ */
+	GLfloat left, right, top, bottom;
+	GLint gravity_flag;    /* -1:ä¸‹å‘ã 0:ãªã— 1:ä¸Šå‘ã */
+	GLfloat blockroll[10][10];           /* ãƒ–ãƒ­ãƒƒã‚¯å›è»¢ */
+	GLfloat blockrollspeed[20];          /* ãƒ–ãƒ­ãƒƒã‚¯å›è»¢é€Ÿåº¦ */
+	GLint blockpoint[20];                /* ãƒ–ãƒ­ãƒƒã‚¯å¾—ç‚¹ */
 	GLint enemy;
-	char filename[16][16];   /* ¥Õ¥¡¥¤¥E¾ */
-	char filenamedata[16];   /* ¥¹¥Æ¡¼¥¸Ëè¤Î¥Õ¥¡¥¤¥E¾¤Î¥Ç¡¼¥¿ */
-	GLint now;    /* ¸½ºß¤Î¥¹¥Æ¡¼¥¸ */
-	GLint last; /* ºÇ½ª¥¹¥Æ¡¼¥¸ */
-	GLint demotime; /* ÅĞ¾E¿¥¯¥E¢¥·¡¼¥ó¤Î»Ä¤Eş´Ö */
+	char filename[16][16];   /* ãƒ•ã‚¡ã‚¤ãƒ«åãƒªã‚¹ãƒˆ */
+	char filenamedata[16];   /* ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«å */
+	GLint now;               /* ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå· */
+	GLint last;              /* æœ€çµ‚ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå· */
+	GLint demotime;          /* ãƒ‡ãƒ¢æ™‚é–“ */
 	GLint display;
-	GLfloat vmax[2];  /* ¥Ü¡¼¥EÎºÇ¹âÂ®ÅÙ */
+	GLfloat vmax[2];         /* æœ€å¤§é€Ÿåº¦ */
 	GLint debugflag;
 	GLfloat demoview[9];
 	GLfloat gameview[9];
 } Stage;
 
-/* ¥Ş¥¦¥¹¥¤¥Ù¥ó¥È¤Ë»È¤¦¹½Â¤ÂÎ */
-typedef struct{
+/* ãƒœã‚¿ãƒ³å…¥åŠ›çŠ¶æ…‹ */
+typedef struct {
 	GLint Down[3];
 	GLint Up[3];
-} Button;
+} Button; 
 
 Ship ship;
 Tama tama[10],shot[10],hit[10],collision[10];
@@ -102,15 +104,15 @@ Material textmaterial;
 static GLint display_num;
 
 
-/* ¤³¤³¤Ş¤ÇÀEÀÉE*/
+/* ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€ã“ã“ã¾ã§ */
 
 
-/* ´Ø¿E*/
-/* ½é´EßÄE*/
+/* é–¢æ•°å®£è¨€ */
+/* ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ– */
 void Initcharacter(void)
 {
 	int i,j;
-	/* ¼«µ¡¤ÎÀßÄE*/
+	/* è‡ªæ©Ÿã®åˆæœŸåŒ– */
 	for(i=0; i<3; i++){
 		ship.position.vector[i] = 0.0;
 		ship.speed.vector[i] = 0.0;
@@ -145,7 +147,7 @@ void Initcharacter(void)
 	stage.vmax[1] = 0.5;
 
 
-	/* ÃÆ¤ÎÀßÄE*/
+	/* å¼¾ã®åˆæœŸåŒ– */
 	for(i=0; i<10; i++){
 		tama[i].material.diffuse_rgba[0] = 0.1*i;
 		tama[i].material.diffuse_rgba[1] = sin(0.314*i);
@@ -162,7 +164,7 @@ void Initcharacter(void)
 		for(j=0;j<10;j++){tama[i].hitflag[i][j] = 0;}
 	}
 
-	/* Ê¸»ú¤Îºà¼ÁÀßÄE*/
+	/* ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒãƒ†ãƒªã‚¢ãƒ«ã®åˆæœŸåŒ– */
 	textmaterial.diffuse_rgba[0] = 1.0;
 	textmaterial.diffuse_rgba[1] = 1.0;
 	textmaterial.diffuse_rgba[2] = 1.0;
@@ -188,11 +190,11 @@ void Initcharacter(void)
 	stage.demotime = 200;
 }
 
-/* ¤³¤³¤Ş¤Ç½é´EßÄE*/
+/* ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°åˆæœŸåŒ–ã“ã“ã¾ã§ */
 
-/* ½é´E½´Ø¿E*/
+/* é–¢æ•°å®šç¾©ã“ã“ã‹ã‚‰ */
 
-/* ¥¦¥£¥ó¥É¥¦½é´E½ */
+/* ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ– */
 void window(void)
 {
 	auxInitDisplayMode(AUX_DOUBLE | AUX_RGBA | AUX_DEPTH);
@@ -201,7 +203,7 @@ void window(void)
 }
 
 
-/* ¥¹¥Æ¡¼¥¸½é´E½ */
+/* ãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ– */
 void Initfile(void)
 {
 	FILE *fp;
@@ -228,7 +230,7 @@ void Initfile(void)
 
 }
 
-/* ¥Ï¥¤¥¹¥³¥¢¥ú½¼¥É */
+/* ãƒã‚¤ã‚¹ã‚³ã‚¢èª­è¾¼ */
 void loadhighscore(void)
 {
 	FILE *fp;
@@ -241,7 +243,7 @@ void loadhighscore(void)
 	fscanf(fp,"%d",&ship.highscore);
 }
 
-/* ¥Ï¥¤¥¹¥³¥¢¥»¡¼¥Ö */
+/* ãƒã‚¤ã‚¹ã‚³ã‚¢ä¿å­˜ */
 void savehighscore(void)
 {
 	FILE *fp;
@@ -254,7 +256,7 @@ void savehighscore(void)
 	fprintf(fp,"%d",ship.highscore);
 }
 
-/* ¥¹¥Æ¡¼¥¸½é´E½ */
+/* ã‚¹ãƒ†ãƒ¼ã‚¸åˆæœŸåŒ– */
 void Initstage(void)
 {
 	int i,j;
@@ -293,21 +295,21 @@ void Initstage(void)
 	
 }
 
-/* ¸÷¸»¤ÎÀßÄE*/
+/* ãƒ©ã‚¤ãƒˆè¨­å®š */
 void light_setting(void)
 {
-	GLfloat v[4] = {1.0,1.0,1.0,1.0}; /* RGBA ¤Î¤Ç¡¼¤¿ */
-	glLightfv(GL_LIGHT0,GL_DIFFUSE,v);    /* Çò¤¤¸÷¸» */
-	/* glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,GL_TRUE); */ /* ¶ÀÌÌÈ¿¼Í½èÍı¤ò¥E¢¥EË */
-    glEnable(GL_LIGHTING); glEnable(GL_LIGHT0);  /* ¥é¥¤¥È¤ÎÀßÄê¤òÍ­¸ú¤Ë */
-	glEnable(GL_NORMALIZE);   /* Ë¡Àş·×»»¤òÀµµ¬²½ */
-	glEnable(GL_DEPTH_TEST);  /* ¥Ç¥×¥¹¥Ğ¥Ã¥Õ¥¡¤ò»ÈÍÑ */
+	GLfloat v[4] = { 1.0,1.0,1.0,1.0 }; /* RGBAå…‰æºè‰² */
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, v);    /* æ‹¡æ•£å…‰è¨­å®š */
+	/* glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER,GL_TRUE); */ /* ãƒ­ãƒ¼ã‚«ãƒ«ãƒ“ãƒ¥ãƒ¼ã‚¢æœ‰åŠ¹åŒ–ï¼ˆæœªä½¿ç”¨ï¼‰ */
+	glEnable(GL_LIGHTING); glEnable(GL_LIGHT0);  /* ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°æœ‰åŠ¹åŒ– */
+	glEnable(GL_NORMALIZE);   /* æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«æ­£è¦åŒ– */
+	glEnable(GL_DEPTH_TEST);  /* ãƒ‡ãƒ—ã‚¹ãƒ†ã‚¹ãƒˆæœ‰åŠ¹åŒ– */
 }
 
-/* ¤³¤³¤Ş¤Ç½é´E½´Ø¿E*/
+/* ã“ã“ã¾ã§é–¢æ•°å®šç¾© */
 
-/* ²èÌÌÉ½¼¨´Ø¿ô·² */
-/* ¿ô»ú¤ÎÉ½¼¨ */
+/* ï½²é‚ï¾Œï¾‰ï½½ï½¼ï½¨ï½´ï¾˜ï½¿î¦ï½² */
+/* æ•°å€¤ã‚’æ–‡å­—åˆ—ã¨ã—ã¦æç”» */
 void Drawnumber(GLint num)
 {
 	char str[12]={'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'};
@@ -330,7 +332,7 @@ void Drawnumber(GLint num)
 	}
 	DrawString(str);
 }
-/* ²èÌÌ¤ÎÊ¸»úÉ½¼¨ */
+/* ç”»é¢ä¸Šã®å„ç¨®ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º */
 void textsput(void)
 {
 	char string[50];
@@ -355,15 +357,15 @@ void textsput(void)
 		}
 	}
 	*/
-	/* ÆÀÅÀ¤ÎÉ½¼¨ */
+	// ã‚¹ã‚³ã‚¢è¡¨ç¤º
 	sprintf(string,"Score %7d",ship.score);
 	glRasterPos3f(-40.0,50.0,1.0);
 	DrawString(string);
-	/* ¥Ï¥¤¥¹¥³¥¢¤ÎÉ½¼¨ */
+	// ãƒã‚¤ã‚¹ã‚³ã‚¢è¡¨ç¤º
 	sprintf(string,"High Score %7d",ship.highscore);
 	glRasterPos3f(-45.0,60.0,1.0);
 	DrawString(string);
-
+	// ãƒ©ã‚¤ãƒ•è¡¨ç¤º
 	sprintf(string,"Life %2d",ship.life);
 	glRasterPos3f(0,50.0,1.0);
 	DrawString(string);
@@ -373,15 +375,15 @@ void textsput(void)
 	fi = 0;
 	if(stage.demotime==0){
 
-		/* ¥Ò¥Ã¥È¿ô¤ÎÉ½¼¨ */
+		// ãƒ’ãƒƒãƒˆæ•°ã‚„å¾—ç‚¹ã€ã‚³ãƒªã‚¸ãƒ§ãƒ³ã®è¡¨ç¤º
 		for(i=0; i<10; i++){
-			
+			/* ãƒ’ãƒƒãƒˆæ•° */
 			if(hit[i].tamaflag == 1){
 				sprintf(string,"%6d HIT",tama[i].hitcount);
 				glRasterPos3f(hit[i].position.vector[_X]-2.0,hit[i].position.vector[_Y]-0.5,1.0);
 				DrawString(string);
 			}
-			/* ¥Ñ¥É¥EÇÄ·¤ÍÊÖ¤·¤¿¤È¤­¤ÎÉ½¼¨ */
+			/* å¾—ç‚¹ */
 			else if(hit[i].tamaflag == 2 && tama[i].point){
 				fi += 0.5;
 				sprintf(string,"%6d Pts.",tama[i].point);
@@ -389,7 +391,7 @@ void textsput(void)
 				
 				DrawString(string);
 			}
-			/* ¥Ü¡¼¥E±»Î¤Î¾×ÆÍ¤ÎÉ½¼¨ */
+			/* å­ãƒªã‚¸ãƒ§ãƒ³ */
 			if(collision[i].tamaflag == 1){
 				sprintf(string,"Collision! %6d Pts.",tama[i].point);
 				glRasterPos3f(px,py,1.0);
@@ -398,18 +400,18 @@ void textsput(void)
 				py -= 3.7;
 			}
 		}
-		/* »Ä¤EÖ¥úÁÃ¥¯¤ÎÉ½¼¨ */
+		// æ®‹ã‚Šãƒ–ãƒ­ãƒƒã‚¯æ•°è¡¨ç¤º
 		sprintf(string,"Block %4d",stage.blocks);
 		glRasterPos3f(20.0,30.0,1.0);
 		DrawString(string);
 		
-		/* »à¤ó¤À²ó¿ô¤ÎÉ½¼¨ */
+		// æ­»äº¡å›æ•°è¡¨ç¤º
 		sprintf(string,"Dead Count %d",ship.deadcount);
 		glRasterPos3f(20.0,34.0,1.0);
 		DrawString(string);
 	}
 
-	/* ¥¯¥E¢¤·¤¿»ş¤ÎÉ½¼¨ */
+	// ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒªã‚¢è¡¨ç¤º
 	if(stage.blocks==0 && stage.now!=stage.last){
 		sprintf(string,"\"%s\" Crear!",stage.filename[stage.now]);
 		glRasterPos3f(5.0,0.0,1.0);
@@ -426,7 +428,7 @@ void textsput(void)
 }
 
 
-/* ¥Ö¥úÁÃ¥¯¤ÎÉ½¼¨ */
+/* ãƒ–ãƒ­ãƒƒã‚¯æç”» */
 void blockput(GLfloat x, GLfloat y, GLint block, GLfloat roll)
 {
 	GLfloat v[2][4],w[2][4]={{1.0,1.0,1.0,1.0},{0.0,0.0,0.0,1.0}};
@@ -479,7 +481,7 @@ void blockput(GLfloat x, GLfloat y, GLint block, GLfloat roll)
 	glPopMatrix();
 }
 
-/* ¥Ñ¥É¥EÎÉ½¼¨ */
+/* ãƒ‘ãƒ‰ãƒ«ï¼ˆè‡ªæ©Ÿï¼‰æç”» */
 void paddleput(void)
 {
 	GLfloat v[4]={1.0,1.0,1.0,1.0};
@@ -511,7 +513,7 @@ void paddleput(void)
 
 }
 
-/* ³°ÏÈ¤ÎÉ½¼¨ */
+/* æ ï¼ˆå£ï¼‰æç”» */
 void wakuput(void)
 {
 	GLfloat v[4]={1.0,1.0,1.0,1.0};
@@ -532,7 +534,7 @@ void wakuput(void)
 	glPopMatrix();
 }
 
-/* ¥Ü¡¼¥EÎÉ½¼¨ */
+/* ãƒœãƒ¼ãƒ«æç”» */
 void ballput(void)
 {
 	GLint i;
@@ -549,7 +551,7 @@ void ballput(void)
 	}
 }
 
-/* ²èÌÌÉ½¼¨ */
+/* ãƒ¡ã‚¤ãƒ³æç”»å‡¦ç† */
 void CALLBACK display(void)
 {
 	GLint i,j,k;
@@ -595,13 +597,13 @@ void CALLBACK display(void)
 	auxSwapBuffers();
 
 }
-/* ¤³¤³¤Ş¤Ç²èÌÌÉ½¼¨´Ø¿ô·² */
+/* ãƒ¡ã‚¤ãƒ³æç”»å‡¦ç†ã“ã“ã¾ã§ */
 
 
-/* ¥¦¥£¥ó¥É¥¦¤Î¥µ¥¤¥ºÊÑ¹¹ */
+/* ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒªã‚µã‚¤ã‚ºæ™‚ã®å‡¦ç† */
 void CALLBACK Reshape(int w, int h)
 {
-	static GLfloat v[4]={1.0,-1.0,2.0,0.0}; /* ¸÷¸»¤Î¸ş¤­ */
+	static GLfloat v[4]={1.0,-1.0,2.0,0.0}; /* ï½¸î–›ï½»ï½¤ï¾ï½¸ï£²ï½¤ï½­ */
 	auxInitPosition(0,0,800,800);
  
 	
@@ -618,14 +620,14 @@ void CALLBACK Reshape(int w, int h)
 		glMatrixMode(GL_MODELVIEW); glLoadIdentity();
 		gluLookAt(9.5,-5.0,10.0+(GLfloat)(stage.demotime), 9.5,0.0,0.0, 0.0,1.0,0.0);
 	}
-	glLightfv(GL_LIGHT0,GL_POSITION,v);      /* Ê¿¹Ô¸÷Àş */
+	glLightfv(GL_LIGHT0,GL_POSITION,v);      /* ï¾Šï½¿ï½¹ï¾”ï½¸î–£ï£² */
 	glClearColor(0.0,0.0,0.0,0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	display();
 }
 
-/* Æ°¤¯Ê¸»ú¤Î½é´E½ */
+/* ãƒ†ã‚­ã‚¹ãƒˆç§»å‹•ç”¨ã®åˆæœŸåŒ– */
 void init_movetext(Tama moji[],GLint i)
 {
 	moji[i].tamaflag = 1;
@@ -638,7 +640,7 @@ void init_movetext(Tama moji[],GLint i)
 }
 
 
-/* ¥Ü¡¼¥E¯¼Í ¥Ü¡¼¥E¬È¯¼Í¤µ¤E¿¤é£±¤òÊÖ¤¹ */
+/* ãƒœãƒ¼ãƒ«ç™ºå°„å‡¦ç† */
 int ball_shot(GLfloat vector1[3],GLfloat vector2[3]){
 	GLint i,j,flag=0;
 	for(i=0;i<10;i++){
@@ -661,7 +663,7 @@ int ball_shot(GLfloat vector1[3],GLfloat vector2[3]){
 	}
 	return flag;
 }
-/* º¸¥Ü¥¿¥ó¤Î¥¤¥Ù¥ó¥È */
+/* ãƒã‚¦ã‚¹å·¦ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã®å‡¦ç† */
 void  CALLBACK mouse_left_down(AUX_EVENTREC *event)
 {
 	GLint i,j,no=0;
@@ -709,12 +711,13 @@ void  CALLBACK mouse_left_down(AUX_EVENTREC *event)
 	}
 }
 
+/* ãƒã‚¦ã‚¹å·¦ãƒœã‚¿ãƒ³é›¢ã—ãŸæ™‚ã®å‡¦ç† */
 void CALLBACK mouse_left_up(AUX_EVENTREC *event)
 {
 	mouse.Down[_LEFT]=0;
 }
 
-/* ¿¿¤óÃæ¥Ü¥¿¥ó¤Î¥¤¥Ù¥ó¥È */
+/* ãƒã‚¦ã‚¹ä¸­ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã®å‡¦ç†ï¼ˆã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ï¼‰ */
 void CALLBACK mouse_middle_down(AUX_EVENTREC *event)
 {
 	if(ship.gamemode == 0){
@@ -726,11 +729,13 @@ void CALLBACK mouse_middle_down(AUX_EVENTREC *event)
 	ship.gamemode = !ship.gamemode;
 }
 
+/* ãƒ–ãƒ­ãƒƒã‚¯ã‚’æ¶ˆã™ */
 void block_delete(GLint i, GLint x, GLint y)
 {
 	stage.blocks --;
 	stage.block[y][x] = 0;
 }
+/* ãƒ’ãƒƒãƒˆã—ãŸãƒ–ãƒ­ãƒƒã‚¯ã®å¾—ç‚¹è¨ˆç®— */
 void hit_score_make(GLint i,GLint x, GLint y,GLint pos)
 {
 	tama[i].hitcount ++;
@@ -740,7 +745,7 @@ void hit_score_make(GLint i,GLint x, GLint y,GLint pos)
 	init_movetext(hit,i);
 }
 
-/* ¥Ö¥úÁÃ¥¯È½ÄE*/
+/* ãƒ–ãƒ­ãƒƒã‚¯ã«ãƒ’ãƒƒãƒˆã—ãŸæ™‚ã®å‡¦ç† */
 void block_hit(GLfloat fnx, GLfloat fny, GLfloat fbx, GLfloat fby, GLint i)
 {
 	GLint blo,blox,bloy,j,k,nx,ny,bx,by,hitflag=0;
@@ -782,7 +787,7 @@ void block_hit(GLfloat fnx, GLfloat fny, GLfloat fbx, GLfloat fby, GLint i)
 			
 			if(blo<=11 || blo>=14 && blo<=20){
 				
-				/* ½Ä¤È²£¤¬Î¾ÊıºÉ¤¬¤Ã¤Æ¤¤¤E*/
+				/* ãƒ–ãƒ­ãƒƒã‚¯ã®å‘¨å›²ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹ */
 				/*
 				flag[0] = flag[0] || (bloM[1][0]>0 && bloM[1][2]>0 && bloM[0][1]>0 && bloM[2][1]>0);				
 				*/
@@ -1007,7 +1012,7 @@ void block_hit(GLfloat fnx, GLfloat fny, GLfloat fbx, GLfloat fby, GLint i)
 	}
 }
 
-/* ¥Ü¡¼¥EËÆ¯¤¯ËE­°úÎÏ */
+/* é‡åŠ›å‡¦ç† */
 void gravity()
 {
 	GLint i,j;
@@ -1037,7 +1042,7 @@ void gravity()
 	}
 }
 
-/* ¾×ÆÍ»ş¤ËÁEê¤ËÅÏ¤E®ÅÙ */
+/* é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ«ã®é€²è¡Œæ–¹å‘æˆåˆ†ã‚’è¨ˆç®— */
 void pass_speed(GLfloat vp[],GLfloat dx, GLfloat dy, GLfloat r, GLint index)
 {
 	GLfloat vx, vy, si, co, vbase;
@@ -1050,7 +1055,7 @@ void pass_speed(GLfloat vp[],GLfloat dx, GLfloat dy, GLfloat r, GLint index)
 	vp[_Y] = si * vbase;
 }
 
-/* ¾×ÆÍ»ş¤Ë¼«Ê¬¤Ë»Ä¤E®ÅÙ */
+/* é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ«ã®æ³•ç·šæ–¹å‘æˆåˆ†ã‚’è¨ˆç®— */
 void leave_speed(GLfloat vl[],GLfloat dx, GLfloat dy, GLfloat r, GLint index)
 {
 	GLfloat vx, vy, si, co, vbase;
@@ -1063,7 +1068,7 @@ void leave_speed(GLfloat vl[],GLfloat dx, GLfloat dy, GLfloat r, GLint index)
 	vl[_Y] = -co * vbase;
 }
 
-/* ¥Ü¡¼¥E±»Î¤ÎÅö¤¿¤E½ÄE*/
+/* ãƒœãƒ¼ãƒ«åŒå£«ã®è¡çªåˆ¤å®šã¨åå°„å‡¦ç† */
 void ballhit(void)
 {
 	GLfloat r,rr,dx,dy, vp1[2],vp2[2],vl1[2],vl2[2],co,si;
@@ -1121,7 +1126,7 @@ void ballhit(void)
 	}
 }
 
-/* ¥Ü¡¼¥EÎÆ°¤­ */
+/* ãƒœãƒ¼ãƒ«ã®ç§»å‹•å‡¦ç† */
 void ballmove(void)
 {
 	GLint i,flag=0;
@@ -1133,7 +1138,7 @@ void ballmove(void)
 	
 	for(i=0;i<10;i++){
 		if(tama[i].tamaflag == 1){
-			/* ¥Ü¡¼¥EÎ»ş´Ö¥«¥¦¥ó¥È */
+			/* ãƒœãƒ¼ãƒ«ã®é€Ÿåº¦å¤‰åŒ–ï¼ˆæ™‚é–“çµŒéã«ã‚ˆã‚‹åŠ é€Ÿãƒ»æ¸›é€Ÿï¼‰ */
 			tama[i].time ++;
 			if(tama[i].time==500){
 				tama[i].speed.vector[_X]/=2.0;
@@ -1159,7 +1164,7 @@ void ballmove(void)
 				tama[i].speed.vector[_Y] -= 0.02;
 			}
 
-			/* XÊı¸ş¤Î°ÜÆ° */
+			/* Xæ–¹å‘ã®å£åˆ¤å®š */
 			x += tama[i].speed.vector[_X];
 			if(x<0.5 || x>19.5){
 				tama[i].speed.vector[_X] *= -1;
@@ -1169,14 +1174,14 @@ void ballmove(void)
 				tama[i].position.vector[_X] = x;
 			}
 			
-			/* YÊı¸ş¤Î°ÜÆ° */
+			/* Yæ–¹å‘ã®å£åˆ¤å®šãƒ»ãƒ‘ãƒ‰ãƒ«åˆ¤å®š */
 			y += tama[i].speed.vector[_Y];
 			dx = x-ship.position.vector[_X];
 			if(y>14){
 				tama[i].speed.vector[_Y] *= -1;
 				y = tama[i].position.vector[_Y];
 			}
-			/* ¥Ñ¥É¥EÎÅö¤¿¤E½ÄE*/
+			/* ãƒ‘ãƒ‰ãƒ«ã«å½“ãŸã£ãŸå ´åˆã®å‡¦ç†ï¼ˆãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ï¼‰ */
 			else if(ship.gamemode==0 && ship.life>0  && abs(dx)<ship.hitwidth/1.7 && y<ship.position.vector[_Y]+1.0 && y>ship.position.vector[_Y]-2.0){
 				tama[i].speed.vector[_Y] = 1.0;
 				tama[i].speed.vector[_X] = 2.0 * dx/ship.hitwidth;
@@ -1188,6 +1193,7 @@ void ballmove(void)
 				collision[i].tamaflag = 0;
 				collision[i].hitcount = 0;
 			}
+			/* ãƒ‘ãƒ‰ãƒ«ã«å½“ãŸã£ãŸå ´åˆã®å‡¦ç†ï¼ˆå¼¾é¿ã‘ãƒ¢ãƒ¼ãƒ‰ï¼‰ */
 			else if(ship.gamemode==1 && ship.life>0 && y<stage.bottom-1.0){
 				tama[i].speed.vector[_Y] = 0.5;
 				tama[i].position.vector[_Y] = stage.bottom-1.0;
@@ -1198,10 +1204,11 @@ void ballmove(void)
 				collision[i].tamaflag = 0;
 				collision[i].hitcount = 0;
 			}
+			/* ãƒ‘ãƒ‰ãƒ«ã«ç›´æ’ƒã—ãŸå ´åˆï¼ˆå¼¾é¿ã‘ãƒ¢ãƒ¼ãƒ‰ï¼‰ */
 			else if(ship.gamemode==1 && ship.life>0  && abs(dx)<0.5 && y<ship.position.vector[_Y]+0.25 && y>ship.position.vector[_Y]-0.25){
 				ship.life=0;
 			}
-			/* ¥Ü¡¼¥EòÍûÀÈ¤·¤¿ */
+			/* ãƒœãƒ¼ãƒ«ãŒä¸‹ã«è½ã¡ãŸå ´åˆã®å‡¦ç† */
 			else if(y<-17){
 				tama[i].tamaflag = 0;
 				ship.life--;
@@ -1213,12 +1220,12 @@ void ballmove(void)
 			else{
 				tama[i].position.vector[_Y] = y;
 			}
-			/* ¥Ö¥úÁÃ¥¯¤ÎÅö¤¿¤E½ÄE*/
+			/* ãƒ–ãƒ­ãƒƒã‚¯ã¨ã®å½“ãŸã‚Šåˆ¤å®š */
 			block_hit(x,y,bx,by,i);
 		}
 	}
 }
-/* Ç®¤¤Èô¤Ó»¶¤EÑ¥É¥EúÈ¯ */
+/* çˆ†ç™ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ– */
 void initexplotion(void)
 {
 	GLint i;
@@ -1235,7 +1242,7 @@ void initexplotion(void)
 	}
 }
 
-/* ÉáÃÊ¤Î½èÍı */
+/* ã‚¢ã‚¤ãƒ‰ãƒ«æ™‚ã®å‡¦ç†ï¼ˆãƒã‚¦ã‚¹ä½ç½®ã«ã‚ˆã‚‹è‡ªæ©Ÿç§»å‹•ãªã©ï¼‰ */
 void  CALLBACK  idle_process(void)
 {
 	GLint x,y;
@@ -1323,7 +1330,7 @@ void  CALLBACK  idle_process(void)
 
 	display();
 }
-/* ¥á¥¤¥ó´Ø¿E*/
+/* ãƒ¡ã‚¤ãƒ³é–¢æ•° */
 void main(void)
 {
 	printf("Select Game Mode\n");
