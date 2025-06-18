@@ -6,3 +6,5 @@
 ・連続ヒットでボーナススコア
 
 Windows11 Visual Studio2022でビルド可能にしました。
+
+<a href="https://deepwiki.com/StarFlowerSeika/BlockHeat"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
